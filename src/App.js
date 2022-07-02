@@ -22,6 +22,9 @@ class App extends Component {
       },
       debits: [],
       credits: [],
+      totalDebits: 0,
+      totalCredits: 0,
+      
       
      
   
@@ -68,14 +71,22 @@ class App extends Component {
 
   }
 
-  addDebit = (debit) => {
+  addDebit = (debit, amount) => {
     this.state.debits.push(debit);
     // this.setState({debits: this.state.debits});
 
     //updating amount 
 
     
+    
+    if (parseInt(amount)){
+      let deb = parseFloat(this.state.totalDebits) + parseFloat(amount);
+      let am = parseFloat(this.state.accountBalance) -  parseFloat(amount);
 
+      this.setState({totalDebits: deb.toFixed(2) })
+      this.setState({accountBalance: am.toFixed(2) })
+    }
+    
     
     this.setState({debits : this.state.debits});
     
@@ -99,7 +110,7 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
-    const Debit_component = () => (<Debits debits={this.state.debits} addDebit={this.addDebit}/>);
+    const Debit_component = () => (<Debits debits={this.state.debits} addDebit={this.addDebit} accountBalance={this.state.accountBalance} totalDebits={this.state.totalDebits}/>);
     const Credit_component = () => (<Credits credits={this.state.credits} addCredit={this.addCredit} />);
 
 

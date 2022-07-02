@@ -3,6 +3,7 @@
 //import axios, { Axios } from 'axios';
 //import { getByAltText } from '@testing-library/react';
 import { Component } from 'react';
+import AccountBalance from './AccountBalance';
 import {Link} from 'react-router-dom';
 
 import '../deb.css';
@@ -50,7 +51,8 @@ class Debits extends Component {
 
     this.setState({date: this.getDate() });
 
-    this.props.addDebit(this.state.post);
+    this.props.addDebit(this.state.post, this.state.post.amount);
+  
     this.setState(prevState => ({
       jobs: [...prevState.jobs, prevState.post],
       post: { description: "", amount: "", date: ""}, 
@@ -70,8 +72,8 @@ class Debits extends Component {
       <div>
         <header>
           <h1 >Debits</h1>
-          <p>Balance: 0</p>
-          <p>totaldebs:0</p>
+          <AccountBalance accountBalance={this.props.accountBalance}/>
+          <p>Debit Balance: {this.props.totalDebits}</p>
         </header>
         
         <form>
@@ -107,16 +109,6 @@ class Debits extends Component {
                 </tr>
               )
             })}
-            {/* {this.props.debits.map((debit, key) => {
-              let date = debit.date.slice(0,10);
-              return (
-                <tr key={[key, debit.id]}>
-                  <td>{debit.amount}</td>
-                  <td>{debit.description}</td>
-                  <td>{date}</td>
-                </tr>
-              )
-            })} */}
 
           </table>
 
