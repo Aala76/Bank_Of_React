@@ -39,6 +39,11 @@ class LogIn extends Component {
     }
     // Render the login form
     return (
+      
+
+
+
+      
       <div>
         <h1>Login</h1>
 

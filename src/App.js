@@ -1,20 +1,27 @@
 // src/App.js
 
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import React, {Component,  Suspense } from 'react';
+import {Switch,BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from './components/Home';
 import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Debits from './components/Debits';
 import Credits from './components/Credits';
+import Sidebar from './components/Sidebar';
 import axios from 'axios';
+
+import Navbar from "./components/Navbar";
+
+
+
+
 
 
 class App extends Component {
   constructor() {  // Create and initialize state
     super(); 
     this.state = {
-      accountBalance: 1234567.89,
+      accountBalance: 515.88,
       currentUser: {
         userName: 'Joe Smith',
         memberSince: '11/22/99',
@@ -22,8 +29,9 @@ class App extends Component {
       },
       debits: [],
       credits: [],
-      totalDebits: 0,
-      totalCredits: 0,
+      totalDebits: 4210.77,
+      totalCredits: 4726.65
+
       
       
      
@@ -64,10 +72,26 @@ class App extends Component {
   }  
 
 
-  addCredit = (cred) => {
-    this.state.credits.push(cred);
+  addCredit = (credit, amount) => {
+    this.state.credits.push(credit);
+    // this.setState({debits: this.state.debits});
+
+    //updating amount 
+
     
-  
+    
+    if (parseInt(amount)){
+      let cred = parseFloat(this.state.totalCredits) + parseFloat(amount);
+      let am = (parseFloat(this.state.accountBalance) + parseFloat(amount));
+
+      this.setState({totalCredits: cred.toFixed(2)});
+      this.setState({accountBalance: am.toFixed(2)});
+      console.log(amount);
+    }
+    
+    this.setState({credits : this.state.credits});
+
+
 
   }
 
@@ -81,18 +105,18 @@ class App extends Component {
     
     if (parseInt(amount)){
       let deb = parseFloat(this.state.totalDebits) + parseFloat(amount);
-      let am = parseFloat(this.state.accountBalance) -  parseFloat(amount);
+      
+      this.setState({totalDebits: deb.toFixed(2)});
+      this.setState({accountBalance: (this.state.accountBalance - amount).toFixed(2)});
 
-      this.setState({totalDebits: deb.toFixed(2) })
-      this.setState({accountBalance: am.toFixed(2) })
     }
     
-    
     this.setState({debits : this.state.debits});
-    
-    
 
+    
+    
   }
+
  
 
   // Update state's currentUser (userName) after "Log In" button is clicked
@@ -110,22 +134,32 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
-    const Debit_component = () => (<Debits debits={this.state.debits} addDebit={this.addDebit} accountBalance={this.state.accountBalance} totalDebits={this.state.totalDebits}/>);
-    const Credit_component = () => (<Credits credits={this.state.credits} addCredit={this.addCredit} />);
+    const Debit_component = () => (<Debits debits={this.state.debits} addDebit={this.addDebit} accountBalance={this.state.accountBalance} totalDebits={this.state.totalDebits} />);
+    const Credit_component = () => (<Credits credits={this.state.credits} addCredit={this.addCredit} accountBalance={this.state.accountBalance} totalCredits={this.state.totalCredits}  />);
+    const SideBar_Comp = () =>(<Sidebar accountBalance={this.state.accountBalance} totalDebits={this.state.totalDebits} totalCredits={this.state.totalCredits} />)
 
 
 
     return (
-      <Router>
-        <div>
-          <Route exact path="/" render={HomeComponent}/>
-          <Route exact path="/userProfile" render={UserProfileComponent}/>
-          <Route exact path="/login" render={LogInComponent}/>
-          <Route exact path="/Debits" render={Debit_component}/>
-          <Route exact path="/Credits" render={Credit_component}/>
-          
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Router>
+        <div id="App">         
+          <Sidebar/>
+          <div d="page-wrap">
+            <Switch> 
+              <Route exact path="/" render={HomeComponent}/>
+              <Route exact path="/userProfile" render={UserProfileComponent}/>
+              <Route exact path="/login" render={LogInComponent}/>
+              <Route exact path="/Debits" render={Debit_component}/>
+              <Route exact path="/Credits" render={Credit_component}/>
+              <Route exact path="/Sidebar" render={SideBar_Comp}/>
+            </Switch>
+          </div> 
         </div>
-      </Router>
+        </Router>
+      </Suspense>
+      
     );
   }
 }

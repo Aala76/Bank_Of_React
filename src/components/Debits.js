@@ -4,7 +4,8 @@
 //import { getByAltText } from '@testing-library/react';
 import { Component } from 'react';
 import AccountBalance from './AccountBalance';
-import {Link} from 'react-router-dom';
+
+
 
 import '../deb.css';
 
@@ -31,6 +32,7 @@ class Debits extends Component {
   }
 
 
+
   handleChange = e => {
     
     const { name, value } = e.target;
@@ -51,14 +53,15 @@ class Debits extends Component {
 
     this.setState({date: this.getDate() });
 
-    this.props.addDebit(this.state.post, this.state.post.amount);
+    this.props.addDebit(this.state.post, this.state.post.amount, "deb");
+
   
     this.setState(prevState => ({
       jobs: [...prevState.jobs, prevState.post],
       post: { description: "", amount: "", date: ""}, 
     }));
 
-    console.log(this.getDate());
+    
     
   };
 
@@ -67,9 +70,11 @@ class Debits extends Component {
     return  daten;
   }
 
+  
+
   render() {
     return (
-      <div>
+      <div class="split right">
         <header>
           <h1 >Debits</h1>
           <AccountBalance accountBalance={this.props.accountBalance}/>
@@ -99,6 +104,7 @@ class Debits extends Component {
               <th>Description</th>
               <th>Date</th>
             </tr>
+           
             {this.props.debits.reverse().map((job, key) => {
               return (
                 <tr key={key}>
@@ -112,7 +118,6 @@ class Debits extends Component {
 
           </table>
 
-          <Link to="/">Return to Home</Link>
           
         
       </div>

@@ -1,0 +1,42 @@
+import React, {Component} from 'react';
+import "./sidebar.css";
+import AccountBalance from './AccountBalance';
+import { NavLink } from "react-router-dom";
+
+
+class Sidebar extends Component {
+    render(){
+        return (
+        <div class="wrapper">
+        <div class="sidebar">
+            <h2>Bank of react</h2>
+            <ul>
+            <li className="nav-list-item" >
+            <NavLink to="/">Home</NavLink>
+            </li>
+            <li className="nav-list-item">
+            <NavLink to="/Debits">Debits</NavLink>
+            </li>
+            <li className="nav-list-item">
+            <NavLink to="/Credits">Credits</NavLink>
+            </li>
+            <li className="nav-list-item">
+            <NavLink to="/userProfile">User Profile</NavLink>
+            </li>
+            <li className="nav-list-item">
+            <NavLink to="/login">Login</NavLink>
+            </li>
+            <br></br>
+            <br></br>
+            <div>
+                {this.props.totalDebits}
+            </div>
+
+            </ul> 
+        </div>
+    </div>
+    )
+    }
+};
+
+export default Sidebar;
