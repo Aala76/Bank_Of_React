@@ -30,6 +30,7 @@ class LogIn extends Component {
   // When user clicked "Log In" button, store user data and then redirect to "User Profile" page
   handleSubmit = (e) => {
     e.preventDefault()
+    
     this.props.mockLogIn(this.state.user)
     this.setState({redirect: true})
   }
@@ -45,7 +46,7 @@ class LogIn extends Component {
 
 
 
-      <div style={{marginLeft: 190}} class="login" class="title">
+      <div style={{marginLeft: 190}} class="title">
 
       <br></br>
       <br></br>
@@ -58,7 +59,7 @@ class LogIn extends Component {
       <br></br>
       <br></br>
 
-        <h1>Login</h1>
+        <h1 style={{marginLeft: 90}}>Login</h1>
         <br></br>
         <br></br>
         <form onSubmit={this.handleSubmit}>
@@ -70,7 +71,7 @@ class LogIn extends Component {
             <label htmlFor="password">Password  </label>
             <input type="password" name="password" class="pad"/>
           </div>
-          <button class="button">Log In</button>
+          <button class="button" style={{marginLeft: 90}} >Log In</button>
         </form>                  
       </div>
     )

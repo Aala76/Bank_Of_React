@@ -43,6 +43,20 @@ class Credits extends Component {
 
     this.setState({date: this.getDate() });
 
+    if (!this.state.post.description){
+      this.setState(prevState => ({
+        jobs: [...prevState.jobs, prevState.post],
+        post: { description: "", amount: "", date: ""}, 
+      }));
+      return alert("Please Enter Description!");
+    }
+    else if(!this.state.post.amount){
+      this.setState(prevState => ({
+        jobs: [...prevState.jobs, prevState.post],
+        post: { description: "", amount: "", date: ""}, 
+      }));
+      return alert("Please Enter Amount!");
+    }
     this.props.addCredit(this.state.post, this.state.post.amount, "deb");
 
   
