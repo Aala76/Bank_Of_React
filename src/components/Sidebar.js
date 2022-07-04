@@ -20,7 +20,7 @@ class Sidebar extends Component {
         <div class="wrapper">
         <div class="sidebar">
 
-            <img src="logo192.png" alt="react logo" class = "logo"/>
+    
             <h2>Bank of react</h2>
             <ul>
             <li className="nav-list-item" >

@@ -14,7 +14,6 @@ class UserProfile extends Component {
           <h1>User Profile</h1>
           <br></br>
           <br></br>
-          <img src="profile.png" alt="profile"/>
           <br></br>
           <br></br>
           <h3>Username: {this.props.userName}</h3>

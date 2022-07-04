@@ -34,7 +34,7 @@ class Home extends Component {
         <br></br>
         <br></br>
 
-        <img src="logo512.png" class="App-logo" alt="maybefloating" />
+
       </div>
     );
   }
