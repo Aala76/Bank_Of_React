@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import './login.css';
 
 class LogIn extends Component {
   constructor () {  // Create and initialize state
@@ -43,20 +44,33 @@ class LogIn extends Component {
 
 
 
-      
-      <div>
-        <h1>Login</h1>
 
+      <div style={{marginLeft: 190}} class="login" class="title">
+
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+
+        <h1>Login</h1>
+        <br></br>
+        <br></br>
         <form onSubmit={this.handleSubmit}>
-          <div>
+          <div class="login">
             <label htmlFor="userName">User Name</label>
-            <input type="text" name="userName" onChange={this.handleChange} value={this.state.user.userName} />
+            <input type="text" name="userName" onChange={this.handleChange} value={this.state.user.userName} class="pad"/>
           </div>
           <div>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" />
+            <label htmlFor="password">Password  </label>
+            <input type="password" name="password" class="pad"/>
           </div>
-          <button>Log In</button>
+          <button class="button">Log In</button>
         </form>                  
       </div>
     )

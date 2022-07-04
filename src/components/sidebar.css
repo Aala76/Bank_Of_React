@@ -1,12 +1,5 @@
 
 
-
-
-
-
-
-
-
  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
 *{
@@ -104,5 +97,10 @@ body{
 
 .wrapper .main_content .info div{
   margin-bottom: 20px;
+}
+
+.logo{
+    height: 100px;
+    width: 100px;
 }
  

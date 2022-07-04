@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import AccountBalance from './AccountBalance';
 import '../deb.css';
 
 class Credits extends Component {
@@ -65,13 +64,29 @@ class Credits extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginLeft: 190}}>
+      <br></br>
+      <br></br>
+      <br></br>
+      
+      
         <header>
-          <h1 >Credits</h1>
-          <AccountBalance accountBalance={this.props.accountBalance}/>
-          <p>Credit Balance: {this.props.totalCredits}</p>
+          <h1 class="title" >Credits</h1 >
+          <br></br>
+          <br></br>
+          <h3 class="title"> 
+           Total Balance: {this.props.accountBalance}
+          </h3>
+          <h3 class="title"> 
+     
+           Credit Balance: {this.props.totalCredits}
+          </h3>
         </header>
-        
+
+      <br></br>
+      <br></br>
+      <br></br>
+        <div >
         <form>
           <input
             name="description"
@@ -79,6 +94,7 @@ class Credits extends Component {
             type="text"
             value={this.state.post.description}
             placeholder="Description"
+            class = "pad"
           />
           <input
             name="amount"
@@ -86,10 +102,14 @@ class Credits extends Component {
             type="number"
             value={this.state.post.amount}
             placeholder="Amount"
+            class = "pad"
           />
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.handleSubmit} class="button">Submit</button>
+          <br></br>
+          <br></br>
+          <br></br>
         </form>
-          <table>
+          <table >
             <tr>
               <th>Amount</th>
               <th>Description</th>
@@ -108,6 +128,7 @@ class Credits extends Component {
             })}
 
           </table>
+          </div>
           
         
       </div>

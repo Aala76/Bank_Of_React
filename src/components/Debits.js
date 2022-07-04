@@ -3,7 +3,6 @@
 //import axios, { Axios } from 'axios';
 //import { getByAltText } from '@testing-library/react';
 import { Component } from 'react';
-import AccountBalance from './AccountBalance';
 
 
 
@@ -74,13 +73,30 @@ class Debits extends Component {
 
   render() {
     return (
-      <div class="split right">
+
+      <div style={{marginLeft: 190}}>
+      < br></br>
+      <br></br>
+      <br></br>
+      
+      
         <header>
-          <h1 >Debits</h1>
-          <AccountBalance accountBalance={this.props.accountBalance}/>
-          <p>Debit Balance: {this.props.totalDebits}</p>
+          <h1 class="title" >Debits</h1 >
+          <br></br>
+          <br></br>
+          <h3 class="title"> 
+           Total Balance: {this.props.accountBalance}
+          </h3>
+          <h3 class="title"> 
+     
+           Debit Balance: {this.props.totalDebits}
+          </h3>
         </header>
-        
+
+      <br></br>
+      <br></br>
+      <br></br>
+      <div >
         <form>
           <input
             name="description"
@@ -88,6 +104,7 @@ class Debits extends Component {
             type="text"
             value={this.state.post.description}
             placeholder="Description"
+            class = "pad"
           />
           <input
             name="amount"
@@ -95,8 +112,12 @@ class Debits extends Component {
             type="number"
             value={this.state.post.amount}
             placeholder="Amount"
+            class = "pad"
           />
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.handleSubmit} class="button">Submit</button>
+          <br></br>
+          <br></br>
+          <br></br>
         </form>
           <table>
             <tr>
@@ -117,7 +138,7 @@ class Debits extends Component {
             })}
 
           </table>
-
+        </div>
           
         
       </div>

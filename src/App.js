@@ -8,9 +8,10 @@ import LogIn from './components/Login';
 import Debits from './components/Debits';
 import Credits from './components/Credits';
 import Sidebar from './components/Sidebar';
+
 import axios from 'axios';
 
-import Navbar from "./components/Navbar";
+//import Navbar from "./components/Navbar";
 
 
 
@@ -37,6 +38,10 @@ class App extends Component {
      
   
     }
+  }
+
+  getinSB = () => {
+    return [this.state.accountBalance, this.state.totalCredits, this.state.totalDebits]
   }
 
 
@@ -129,33 +134,32 @@ class App extends Component {
 
   // Create Routes and React elements to be rendered using React components
   render() {  
-    const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
+    const HomeComponent = () => (<Home accountBalance={this.state.accountBalance} totalCredits={this.state.totalCredits} totalDebits={this.state.totalDebits}/>);
     const UserProfileComponent = () => (
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
     const Debit_component = () => (<Debits debits={this.state.debits} addDebit={this.addDebit} accountBalance={this.state.accountBalance} totalDebits={this.state.totalDebits} />);
     const Credit_component = () => (<Credits credits={this.state.credits} addCredit={this.addCredit} accountBalance={this.state.accountBalance} totalCredits={this.state.totalCredits}  />);
-    const SideBar_Comp = () =>(<Sidebar accountBalance={this.state.accountBalance} totalDebits={this.state.totalDebits} totalCredits={this.state.totalCredits} />)
-
+    const SideBar_Comp = () => (<Sidebar getinSB={this.getinSB}/>);
 
 
     return (
 
       <Suspense fallback={<div>Loading...</div>}>
         <Router>
-        <div id="App">         
-          <Sidebar/>
-          <div d="page-wrap">
-            <Switch> 
-              <Route exact path="/" render={HomeComponent}/>
-              <Route exact path="/userProfile" render={UserProfileComponent}/>
-              <Route exact path="/login" render={LogInComponent}/>
-              <Route exact path="/Debits" render={Debit_component}/>
-              <Route exact path="/Credits" render={Credit_component}/>
-              <Route exact path="/Sidebar" render={SideBar_Comp}/>
-            </Switch>
-          </div> 
+              
+        <Sidebar/>
+          <div style={{marginLeft: 120}} >
+          <Switch> 
+            <Route exact path="/" render={HomeComponent}/>
+            <Route exact path="/userProfile" render={UserProfileComponent}/>
+            <Route exact path="/login" render={LogInComponent}/>
+            <Route exact path="/Debits" render={Debit_component}/>
+            <Route exact path="/Credits" render={Credit_component}/>
+            <Route exact path="/Sidebar" render={SideBar_Comp}/>
+          </Switch>
+        
         </div>
         </Router>
       </Suspense>

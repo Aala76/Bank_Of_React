@@ -1,14 +1,26 @@
+
 import React, {Component} from 'react';
 import "./sidebar.css";
-import AccountBalance from './AccountBalance';
+//import AccountBalance from './AccountBalance';
 import { NavLink } from "react-router-dom";
 
 
+
 class Sidebar extends Component {
+
+    getProp = (props) => {
+        console.log(this.props.AccountBalance)
+    }
+
+
     render(){
+
+
         return (
         <div class="wrapper">
         <div class="sidebar">
+
+            <img src="logo192.png" alt="react logo" class = "logo"/>
             <h2>Bank of react</h2>
             <ul>
             <li className="nav-list-item" >
@@ -26,11 +38,13 @@ class Sidebar extends Component {
             <li className="nav-list-item">
             <NavLink to="/login">Login</NavLink>
             </li>
+
+            {this.props.totalDebits}
             <br></br>
             <br></br>
-            <div>
-                {this.props.totalDebits}
-            </div>
+            <p>
+            
+            </p>
 
             </ul> 
         </div>

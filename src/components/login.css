@@ -1,0 +1,50 @@
+body  
+{  
+    margin: 0;  
+    padding: 0;  
+    background-color:#6abadeba;  
+    font-family: 'Arial';  
+}  
+
+
+.pad{
+    padding:10px;
+    border-radius:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.button {
+
+    
+    appearance:none;
+    -webkit-appearance:none;
+  
+    /* usual styles */
+    padding:10px;
+    border:none;
+    background-color:#567cce;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    
+  
+  }
+
+.button:hover{
+    background-color: #4a6a9b;
+}
+
+.button:active {
+  background-color: #404b6e;
+  transform: translateY(4px);
+}
+
+.title {
+    color: #6080c5;
+    width: 60;
+    text-transform: uppercase;
+    font-weight: bold;
+    
+}
+ 
